@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="container">
+    
+    <aside class="sidebar">
+      <h2>Logo</h2>
+      <h4> Dashboard</h4>
+      <button id="logout-btn">Logout</button>
+    </aside>
+    <main class="main">
+      <nav>
+      <h1 class="nav-h1">Total contacts</p>
+      <input  type="search" name="search" id="nav-search" placeholder="Search by Name..." />
+      <img class="nav-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSppkoKsaYMuIoNLDH7O8ePOacLPG1mKXtEng&s" alt="profile image">
+    </nav>
+     
+
+      <form id="contact-form">
+        <input type="text" placeholder="Name" id="name" required />
+        <input type="text" placeholder="Designation" id="designation" required />
+        <input type="text" placeholder="Company" id="company" required />
+        <input type="text" placeholder="Industry" id="industry" required />
+        <input type="email" placeholder="Email" id="email" required />
+        <input type="tel" placeholder="Phone Number" id="phone" required />
+        <input type="text" placeholder="Country" id="country" required />
+        <button type="submit">Add Contact</button>
+      </form>
+
+      <input type="text" id="search" placeholder="Search by Name..." />
+
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortTable('name')">Name</th>
+            <th>Designation</th>
+            <th>Company</th>
+            <th>Industry</th>
+            <th>Email</th>
+            <th onclick="sortTable('country')">Country</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="contact-table"></tbody>
+      </table>
+    </main>
+  </div>
+
+ <script src="dashboard.js"></script>
+</body>
+</html>

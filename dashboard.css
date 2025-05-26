@@ -1,0 +1,174 @@
+ body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background: #f9f9f9;
+ }
+
+ .container {
+   display: flex;
+ }
+
+ .sidebar {
+   width: 20%;
+   background-color: #CEF3FF;
+   height: 100vh;
+   padding: 20px;
+   box-sizing: border-box;
+   position: relative;
+ }
+
+ .sidebar h2 {
+   color: #0077cc;
+ }
+
+ nav {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 1rem 2rem;
+   background-color: #ffffff;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   position: relative;
+   top: 0;
+   z-index: 100;
+   height: 25px;
+ }
+
+ nav > h1 {
+   font-size: 1.5rem;
+   color: #311313;
+    margin-top: 40px;
+
+ }
+
+ #nav-search {
+   position: absolute;
+   top: 0;
+   left: 40%;
+   margin-top: 10px;
+   width: 300px;
+   padding: 0.5rem 1rem;
+   border: 1px solid #ddd;
+   border-radius: 9px;
+   font-size: 0.9rem;
+   outline: none;
+ }
+
+
+
+ .nav-img {
+  position: absolute;
+
+  top: 0;
+  right: 20px;
+    margin-top: 10px;
+
+   width: 30px;
+   height: 40px;
+   border-radius: 50%;
+   object-fit: cover;
+   cursor: pointer;
+ }
+
+ .main {
+   flex: 1;
+   padding: 20px;
+   overflow-x: auto;
+ }
+
+ form {
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+   flex-wrap: wrap;
+   align-items: center;
+   margin: 2rem 0;
+ }
+
+ form input,
+ form select,
+ form button {
+   width: auto;
+   min-width: 120px;
+   padding: 10px;
+   margin-bottom: 0;
+   border: 1px solid #ccc;
+   box-sizing: border-box;
+ }
+
+ #contact-form input {
+   width: 180px;
+   padding: 8px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+ }
+
+ #contact-form button {
+   padding: 8px 16px;
+   background: #4caf50;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+
+ #contact-form button:hover {
+   background: #45a049;
+ }
+
+ #search {
+   color: black;
+   margin-top: 20px;
+   padding: 10px;
+   border: none;
+   border-radius: 5px;
+   background-color: #e0f7fa;
+   box-sizing: border-box;
+   font-size: 16px;
+   border: 1px solid #040a0a;
+   cursor: pointer;
+   width: 100%;
+   max-width: 300px;
+ }
+
+ table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+   min-width: 600px;
+ }
+
+ th,
+ td {
+   padding: 10px;
+   border: 1px solid #ddd;
+   text-align: left;
+ }
+
+ th {
+   cursor: pointer;
+ }
+
+ .actions button {
+   margin-right: 5px;
+ }
+
+ #logout-btn {
+   position: absolute;
+   bottom: 30px;
+   left: 20px;
+   color: #000;
+   background: none;
+   border: none;
+   font-size: 20px;
+   cursor: pointer;
+ }
+
+ #logout-btn:hover {
+   background: #d9efff;
+ }
+
+ #logout-btn::before {
+   content: "[→ ";
+ }

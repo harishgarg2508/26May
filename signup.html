@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    /* SAME STYLES AS YOUR LOGIN PAGE */
+    /* Include all styles from your login page here (or move to index.css and link it in both pages) */
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="circle top-left"></div>
+    <div class="circle bottom-right"></div>
+    <div class="dots top-right"></div>
+    <div class="dots bottom-left"></div>
+
+    <div class="login-box">
+      <h2>Sign Up</h2>
+      <p>Create your account to get started</p>
+
+      <form id="signup-form">
+        <input type="email" placeholder="Email" id="email" required />
+        <div class="password-container">
+          <input type="password" placeholder="Password" id="password" required />
+        </div>
+        <div class="password-container">
+          <input type="password" placeholder="Confirm Password" id="confirm-password" required />
+        </div>
+
+        <button type="submit">Register</button>
+        <a href="login.html" class="signup-link">Already have an account? Sign In</a>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+
+      alert("Registration successful!");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

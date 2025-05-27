@@ -119,7 +119,6 @@ function editContact(index: number): void {
   (document.getElementById("phone") as HTMLInputElement).value = c.phone;
   (document.getElementById("country") as HTMLInputElement).value = c.country;
 
-  // Remove the current contact before editing
   contacts.splice(index, 1);
   localStorage.setItem("contacts", JSON.stringify(contacts));
   renderContacts();

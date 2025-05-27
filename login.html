@@ -30,24 +30,7 @@
 
     </div>
   </div>
-  <script>
-  document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const enteredEmail = document.getElementById('user-id').value.trim();
-    const enteredPassword = document.getElementById('user-password').value;
-
-    const storedEmail = localStorage.getItem('userEmail');
-    const storedPassword = localStorage.getItem('userPassword');
-
-    if (enteredEmail === storedEmail && enteredPassword === storedPassword) {
-      // alert("Login successful!");  
-      window.location.href = "dashboard.html";
-    } else {
-      alert("Invalid credentials. Please try again.");
-    }
-  });
-</script>
+ <script src="login.js"></script>
 
 </body>
 </html>

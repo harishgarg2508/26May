@@ -1,9 +1,8 @@
-let contacts = [];
+    let contacts = [];
     let editIndex = -1;
     let db;
 
-    // Simple IndexedDB setup
-    function initDB() {
+    function dbin() {
       const request = indexedDB.open('ContactDB', 1);
       
       request.onerror = () => console.error('DB error');
@@ -129,4 +128,4 @@ let contacts = [];
       window.location.href = 'login.html';
     });
 
-    initDB();
+    dbin();

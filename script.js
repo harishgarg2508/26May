@@ -1,104 +1,90 @@
-// Signup
+function getInputValue(id) {
+    var input = document.getElementById(id);
+    return input ? input.value : '';
+}
 function signup() {
-  const email = document.getElementById('signupEmail').value;
-  const password = document.getElementById('signupPassword').value;
-  localStorage.setItem("user", JSON.stringify({ email, password }));
-  alert("Signup successful!");
-  window.location.href = "index.html";
-}
-
-// Login
-function login() {
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (user && user.email === email && user.password === password) {
-    localStorage.setItem("loggedIn", "true");
-    window.location.href = "dashboard.html";
-  } else {
-    alert("Invalid credentials");
-  }
-}
-
-// Logout
-function logout() {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "index.html";
-}
-
-// Add Contact
-function addContact() {
-  const contact = {
-    name: document.getElementById("name").value,
-    designation: document.getElementById("designation").value,
-    company: document.getElementById("company").value,
-    industry: document.getElementById("industry").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-    country: document.getElementById("country").value,
-  };
-
-  const contacts = JSON.parse(localStorage.getItem("contacts") || "[]");
-  contacts.push(contact);
-  localStorage.setItem("contacts", JSON.stringify(contacts));
-  renderContacts();
-}
-
-// Render Contacts
-function renderContacts() {
-  const contacts = JSON.parse(localStorage.getItem("contacts") || "[]");
-  const tbody = document.getElementById("contactTable");
-  const filterEmail = document.getElementById("searchEmail")?.value.toLowerCase();
-  const filterCountry = document.getElementById("filterCountry")?.value;
-
-  tbody.innerHTML = "";
-
-  contacts.forEach((c, i) => {
-    if (filterEmail && !c.email.toLowerCase().includes(filterEmail)) return;
-    if (filterCountry && c.country !== filterCountry) return;
-
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${c.name}</td><td>${c.designation}</td><td>${c.company}</td><td>${c.industry}</td>
-      <td>${c.email}</td><td>${c.phone}</td><td>${c.country}</td>
-      <td>
-        <button onclick="editContact(${i})">Edit</button>
-        <button onclick="deleteContact(${i})">Delete</button>
-      </td>
-    `;
-    tbody.appendChild(row);
-  });
-}
-
-// Delete
-function deleteContact(index) {
-  const contacts = JSON.parse(localStorage.getItem("contacts") || "[]");
-  contacts.splice(index, 1);
-  localStorage.setItem("contacts", JSON.stringify(contacts));
-  renderContacts();
-}
-
-// Edit
-function editContact(index) {
-  const contacts = JSON.parse(localStorage.getItem("contacts") || "[]");
-  const c = contacts[index];
-  document.getElementById("name").value = c.name;
-  document.getElementById("designation").value = c.designation;
-  document.getElementById("company").value = c.company;
-  document.getElementById("industry").value = c.industry;
-  document.getElementById("email").value = c.email;
-  document.getElementById("phone").value = c.phone;
-  document.getElementById("country").value = c.country;
-
-  contacts.splice(index, 1); // remove old one
-  localStorage.setItem("contacts", JSON.stringify(contacts));
-  renderContacts();
-}
-
-// Auto render if on dashboard
-if (window.location.pathname.includes("dashboard")) {
-  if (localStorage.getItem("loggedIn") !== "true") {
+    var email = getInputValue('signupEmail');
+    var password = getInputValue('signupPassword');
+    var user = { email: email, password: password };
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Signup successful!");
     window.location.href = "index.html";
-  }
-  renderContacts();
+}
+function login() {
+    var email = getInputValue('loginEmail');
+    var password = getInputValue('loginPassword');
+    var userData = localStorage.getItem("user");
+    var user = userData ? JSON.parse(userData) : null;
+    if (user && user.email === email && user.password === password) {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "dashboard.html";
+    }
+    else {
+        alert("Invalid credentials");
+    }
+}
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+}
+function addContact() {
+    var contact = {
+        name: getInputValue("name"),
+        designation: getInputValue("designation"),
+        company: getInputValue("company"),
+        industry: getInputValue("industry"),
+        email: getInputValue("email"),
+        phone: getInputValue("phone"),
+        country: getInputValue("country"),
+    };
+    var storedContacts = localStorage.getItem("contacts");
+    var contacts = storedContacts ? JSON.parse(storedContacts) : [];
+    contacts.push(contact);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    renderContacts();
+}
+function renderContacts() {
+    var _a, _b;
+    var storedContacts = localStorage.getItem("contacts");
+    var contacts = storedContacts ? JSON.parse(storedContacts) : [];
+    var tbody = document.getElementById("contactTable");
+    var filterEmail = (_a = document.getElementById("searchEmail")) === null || _a === void 0 ? void 0 : _a.value.toLowerCase();
+    var filterCountry = (_b = document.getElementById("filterCountry")) === null || _b === void 0 ? void 0 : _b.value;
+    if (!tbody)
+        return;
+    tbody.innerHTML = "";
+    contacts.forEach(function (c, i) {
+        if (filterEmail && !c.email.toLowerCase().includes(filterEmail))
+            return;
+        if (filterCountry && c.country !== filterCountry)
+            return;
+        var row = document.createElement("tr");
+        row.innerHTML = "\n      <td>".concat(c.name, "</td><td>").concat(c.designation, "</td><td>").concat(c.company, "</td><td>").concat(c.industry, "</td>\n      <td>").concat(c.email, "</td><td>").concat(c.phone, "</td><td>").concat(c.country, "</td>\n      <td>\n        <button onclick=\"editContact(").concat(i, ")\">Edit</button>\n        <button onclick=\"deleteContact(").concat(i, ")\">Delete</button>\n      </td>\n    ");
+        tbody.appendChild(row);
+    });
+}
+function deleteContact(index) {
+    var storedContacts = localStorage.getItem("contacts");
+    var contacts = storedContacts ? JSON.parse(storedContacts) : [];
+    contacts.splice(index, 1);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    renderContacts();
+}
+function editContact(index) {
+    var storedContacts = localStorage.getItem("contacts");
+    var contacts = storedContacts ? JSON.parse(storedContacts) : [];
+    var c = contacts[index];
+    if (!c)
+        return;
+    document.getElementById("name").value = c.name;
+    document.getElementById("designation").value = c.designation;
+    document.getElementById("company").value = c.company;
+    document.getElementById("industry").value = c.industry;
+    document.getElementById("email").value = c.email;
+    document.getElementById("phone").value = c.phone;
+    document.getElementById("country").value = c.country;
+    // Remove the current contact before editing
+    contacts.splice(index, 1);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    renderContacts();
 }
